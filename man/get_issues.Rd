@@ -7,7 +7,8 @@
 get_issues(user = NULL, project_key = getOption("jira_project"),
   jira_url = getOption("jira_url"), jira_user = getOption("jira_user"),
   jira_password = getOption("jira_password"),
-  verbose = getOption("jira_verbose"))
+  verbose = getOption("jira_verbose"),
+  start = NULL)
 }
 \arguments{
 \item{user}{user to search for}
@@ -17,6 +18,8 @@ get_issues(user = NULL, project_key = getOption("jira_project"),
 \item{jira_user}{username for authentication}
 
 \item{jira_password}{password for authentication}
+
+\item{start}{starting count to retrieve results at (50 per page)}
 }
 \value{
 character vector of issues
@@ -30,6 +33,9 @@ Get issues assigned to a user
 get_issues(user = "admin")
 
 issues <- get_issues(project = "ADM", issue = "ADM-6", verbose = T)
+
+## Get list of issues starting at page 2.
+issues <- get_issues(project = "ADM", issue = "ADM-6", verbose = T, start = 50)
 
 ## Get list of issues assigned to user
 res <- get_issues(user = "admin" , project_key = getOption("jira_project"))
